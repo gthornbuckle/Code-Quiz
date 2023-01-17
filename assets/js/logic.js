@@ -75,4 +75,24 @@ function endQuiz(){
     document.getElementById('final-score').textContent = userScore; //Displays user's score
 }
 
+document.querySelector('#submit').addEventListener("click", function(event){
+    event.preventDefault();
+
+    var userInitialsInput = document.querySelector("#initials");
+    var highscores = JSON.parse(localStorage.getItem("highscores"));;
+    var newScore = [userInitialsInput.value.trim(), userScore]
+
+    if(userInitialsInput === ""){
+        return;
+    }
+
+    highscores.push(newScore);
+    localStorage.setItem("highscores", JSON.stringify(highscores));
+    userScore = 0;
+    userInitialsInput = "";
+
+    console.log(highscores);
+    displayHighscores();
+});
+
 document.querySelector('#start').addEventListener('click', startQuiz);

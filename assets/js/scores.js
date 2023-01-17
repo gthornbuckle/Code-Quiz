@@ -1,13 +1,16 @@
-var userInitialsInput = document.querySelector("#initials");
+var highscores = JSON.parse(localStorage.getItem("highscores"));;
+var highscoreList = document.querySelector("#highscores");
 
-document.querySelector('#submit').addEventListener("click", function(event){
-    event.preventDefault();
+function displayHighscores(){
 
-    var user = {
-        userInitials: userInitialsInput.value.trim(),
-        highScore: userScore
-    };
+    html = "";
 
-    console.log(user);
+    for(var i = 0; i < highscores.length; i++){
 
-});
+        html += "<li>" +highscores[i]+ "</li>";
+    }
+
+    document.getElementById("highscores").innerHTML = html;
+}
+
+displayHighscores();
