@@ -91,8 +91,7 @@ document.querySelector('#submit').addEventListener("click", function(event){
     userScore = 0;
     userInitialsInput = "";
 
-    console.log(highscores);
-    displayHighscores();
+    location.href = "highscores.html";
 });
 
 document.querySelector('#start').addEventListener('click', startQuiz);
