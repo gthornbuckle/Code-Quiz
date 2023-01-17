@@ -21,8 +21,14 @@ function startQuiz(){
     console.log("Quiz started.");
     quizTimer(); //Starts quiz timer
 
-    document.getElementById('start-screen').style.display='none'; //Hides start screen
-    document.getElementById('questions').style.display='block'; //Displays question screen
+    document.getElementById('start-screen').className = 'hide'; //Hides start screen
+    document.getElementById('questions').className ='start'; //Displays question screen
+
+    
+    document.getElementById('question-title').textContent = questions[0].question;
+    // for (var i = 0; i < questions.length; i++){
+
+
 };
 
 
