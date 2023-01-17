@@ -47,8 +47,6 @@ function questionDisplay(){
     else{
         console.log("End of questions");
         endQuiz();
-        timeLeft = 1;
-        document.getElementById('time').textContent = timeLeft;
     }
 }
 
@@ -71,7 +69,10 @@ function endQuiz(){
     document.getElementById('questions').className = 'hide';
     document.getElementById('end-screen').className ='start';
 
-    document.getElementById('final-score').textContent = userScore;
+    timeLeft = 0; //Ends timer when quiz is over
+    document.getElementById('time').textContent = timeLeft;
+
+    document.getElementById('final-score').textContent = userScore; //Displays user's score
 }
 
 document.querySelector('#start').addEventListener('click', startQuiz);
