@@ -1,5 +1,6 @@
 var currentQuestion = 0;
 var timeLeft = 0;
+var userScore = 0;
 
 function quizTimer() {
     timeLeft = 60;
@@ -22,6 +23,7 @@ function checkAnswer(event){
 
     if(questions[currentQuestion].answers[selectedAnswer][1] === true){ //Checks answer array to confirm if selected answer is correct
         console.log("Correct answer selected");
+        userScore++; //Adds a point to score
         currentQuestion++; //Moves on to the next question
         questionDisplay();
     }
@@ -52,6 +54,7 @@ function questionDisplay(){
 
 function startQuiz(){
     console.log("Quiz started.");
+    userScore = 0;
     quizTimer(); //Starts quiz timer
     
     document.getElementById('start-screen').className = 'hide'; //Hides start screen
@@ -67,6 +70,8 @@ function startQuiz(){
 function endQuiz(){
     document.getElementById('questions').className = 'hide';
     document.getElementById('end-screen').className ='start';
+
+    document.getElementById('final-score').textContent = userScore;
 }
 
 document.querySelector('#start').addEventListener('click', startQuiz);
