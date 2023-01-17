@@ -10,7 +10,7 @@ function displayHighscores(){
         scoreDisplay += "<li>" +highscores[i][0]+ "  -  " +highscores[i][1]+ "</li>"; //Creates a new list item for each highscore
     }
 
-    document.getElementById("highscores").innerHTML = scoreDisplay;
+    document.getElementById("highscores").innerHTML = scoreDisplay; //Adds list elements to html file
 }
 
 function clearHighscores(){

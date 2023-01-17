@@ -79,21 +79,21 @@ document.querySelector('#submit').addEventListener("click", function(event){
     event.preventDefault();
 
     var userInitialsInput = document.querySelector("#initials");
-    var newScore = [userInitialsInput.value.trim(), userScore]
+    var newScore = [userInitialsInput.value.trim(), userScore] //Temporary variable to store user inputted name and quiz score
     var highscores = [];
 
-    highscores = JSON.parse(localStorage.getItem('highscores')) || [];
+    highscores = JSON.parse(localStorage.getItem('highscores')) || []; //Loads highscore array from local storage or creates empty array if it doesn't exist
 
     if(userInitialsInput === ""){
         return;
     }
 
-    highscores.push(newScore);
-    localStorage.setItem("highscores", JSON.stringify(highscores));
-    userScore = 0;
+    highscores.push(newScore); //Adds temporary score to highscores array
+    localStorage.setItem("highscores", JSON.stringify(highscores)); //Saves highscores array to local storage
+    userScore = 0; //Resets temporary variables
     userInitialsInput = "";
 
-    location.href = "highscores.html";
+    location.href = "highscores.html"; //Redirects user to highscores page after they submit
 });
 
 document.querySelector('#start').addEventListener('click', startQuiz);
