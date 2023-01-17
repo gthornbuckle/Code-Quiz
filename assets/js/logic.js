@@ -10,14 +10,10 @@ function quizTimer() {
   
         if(timeLeft <= 0) {
             clearInterval(timeInterval);
-            outOfTime();
+            endQuiz();
         }
 
     }, 1000); //1000ms interval means the timer will countdown every second.
-}
-
-function outOfTime(){
-    console.log("Out of time.");
 }
 
 function checkAnswer(event){
@@ -26,36 +22,51 @@ function checkAnswer(event){
 
     if(questions[currentQuestion].answers[selectedAnswer][1] === true){ //Checks answer array to confirm if selected answer is correct
         console.log("Correct answer selected");
-        currentQuestion++;
+        currentQuestion++; //Moves on to the next question
+        questionDisplay();
     }
     else{
         console.log("Incorrect answer selected");
-        timeLeft -= 10;
-        document.getElementById('time').textContent = timeLeft;
+        timeLeft -= 10; //Takes 10 seconds off the current time remaining
+        document.getElementById('time').textContent = timeLeft; //Updates timer on page with new value
         currentQuestion++;
+        questionDisplay();
+    }
+}
+
+function questionDisplay(){
+    if(currentQuestion < questions.length){
+        document.getElementById('question-title').textContent = questions[currentQuestion].question; //Displays question on page
+        document.getElementById('choice1').textContent = questions[currentQuestion].answers[0][0]; //Displays answers within 4 buttons on page
+        document.getElementById('choice2').textContent = questions[currentQuestion].answers[1][0];
+        document.getElementById('choice3').textContent = questions[currentQuestion].answers[2][0];
+        document.getElementById('choice4').textContent = questions[currentQuestion].answers[3][0];
+    }
+    else{
+        console.log("End of questions");
+        endQuiz();
+        timeLeft = 1;
+        document.getElementById('time').textContent = timeLeft;
     }
 }
 
 function startQuiz(){
     console.log("Quiz started.");
     quizTimer(); //Starts quiz timer
-
+    
     document.getElementById('start-screen').className = 'hide'; //Hides start screen
     document.getElementById('questions').className ='start'; //Displays question screen
-
-    document.getElementById('question-title').textContent = questions[currentQuestion].question; //Displays question on page
-    document.getElementById('choice1').textContent = questions[currentQuestion].answers[0][0]; //Displays answers within 4 buttons on page
-    document.getElementById('choice2').textContent = questions[currentQuestion].answers[1][0];
-    document.getElementById('choice3').textContent = questions[currentQuestion].answers[2][0];
-    document.getElementById('choice4').textContent = questions[currentQuestion].answers[3][0];
+    questionDisplay();
     
     document.querySelector('#choice1').addEventListener('click', checkAnswer);
     document.querySelector('#choice2').addEventListener('click', checkAnswer);
     document.querySelector('#choice3').addEventListener('click', checkAnswer);
     document.querySelector('#choice4').addEventListener('click', checkAnswer);
-
 };
 
-
+function endQuiz(){
+    document.getElementById('questions').className = 'hide';
+    document.getElementById('end-screen').className ='start';
+}
 
 document.querySelector('#start').addEventListener('click', startQuiz);
