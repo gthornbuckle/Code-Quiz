@@ -2,13 +2,13 @@ var currentQuestion = 0;
 var timeLeft = 0;
 
 function quizTimer() {
-    var timeLeft = 60;
+    timeLeft = 60;
     var timeInterval = setInterval(function () {
         var timerEl = document.getElementById('time');
         timeLeft--;
         timerEl.textContent = timeLeft; // Displays timer on the page in real time.
   
-        if(timeLeft === 0) {
+        if(timeLeft <= 0) {
             clearInterval(timeInterval);
             outOfTime();
         }
@@ -23,11 +23,16 @@ function outOfTime(){
 function checkAnswer(event){
     var element = event.target;
     var selectedAnswer = element.getAttribute("data-id"); //Takes id of chosen button
+
     if(questions[currentQuestion].answers[selectedAnswer][1] === true){ //Checks answer array to confirm if selected answer is correct
         console.log("Correct answer selected");
+        currentQuestion++;
     }
     else{
         console.log("Incorrect answer selected");
+        timeLeft -= 10;
+        document.getElementById('time').textContent = timeLeft;
+        currentQuestion++;
     }
 }
 
