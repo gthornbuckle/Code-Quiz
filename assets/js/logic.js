@@ -26,6 +26,10 @@ function startQuiz(){
 
     
     document.getElementById('question-title').textContent = questions[0].question;
+    document.getElementById('choiceA').textContent = questions[0].answers[0];
+    document.getElementById('choiceB').textContent = questions[0].answers[1];
+    document.getElementById('choiceC').textContent = questions[0].answers[2];
+    document.getElementById('choiceD').textContent = questions[0].answers[3];
     // for (var i = 0; i < questions.length; i++){
 
 
