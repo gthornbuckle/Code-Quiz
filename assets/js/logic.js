@@ -79,14 +79,13 @@ document.querySelector('#submit').addEventListener("click", function(event){
     event.preventDefault();
 
     var userInitialsInput = document.querySelector("#initials");
-    var highscores = JSON.parse(localStorage.getItem("highscores"));
     var newScore = [userInitialsInput.value.trim(), userScore]
+    var highscores = [];
+
+    highscores = JSON.parse(localStorage.getItem('highscores')) || [];
 
     if(userInitialsInput === ""){
         return;
-    }
-    if(highscores = null){
-        highscores = [];
     }
 
     highscores.push(newScore);
