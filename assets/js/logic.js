@@ -79,7 +79,7 @@ document.querySelector('#submit').addEventListener("click", function(event){
     event.preventDefault();
 
     var userInitialsInput = document.querySelector("#initials");
-    var highscores = JSON.parse(localStorage.getItem("highscores"));;
+    var highscores = JSON.parse(localStorage.getItem("highscores"));
     var newScore = [userInitialsInput.value.trim(), userScore]
 
     if(userInitialsInput === ""){
