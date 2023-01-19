@@ -23,12 +23,16 @@ function checkAnswer(event){
 
     if(questions[currentQuestion].answers[selectedAnswer][1] === true){ //Checks answer array to confirm if selected answer is correct
         console.log("Correct answer selected");
+        document.getElementById('incorrect-answer').className = 'hide';
+        document.getElementById('correct-answer').className = 'start';
         userScore++; //Adds a point to score
         currentQuestion++; //Moves on to the next question
         questionDisplay();
     }
     else{
         console.log("Incorrect answer selected");
+        document.getElementById('correct-answer').className = 'hide';
+        document.getElementById('incorrect-answer').className = 'start';
         timeLeft -= 10; //Takes 10 seconds off the current time remaining
         document.getElementById('time').textContent = timeLeft; //Updates timer on page with new value
         currentQuestion++;
